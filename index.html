@@ -261,26 +261,27 @@
     }
     .card.group ul.features li::before { color: var(--accent); filter: brightness(.9); }
 
-    .cars-label {
+    .price-label {
       font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
       color: var(--ink-soft); margin-bottom: 12px;
     }
-    .cars {
-      display: flex; flex-wrap: wrap; gap: 8px;
+    .price-list {
+      list-style: none; padding: 0; margin: 0 0 16px;
+      border-top: 1px solid var(--line);
+    }
+    .price-list li {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+      padding: 11px 0; border-bottom: 1px solid var(--line);
+      font-size: 15px;
+    }
+    .price-list li .p-name { color: var(--ink); }
+    .price-list li .p-val { font-weight: 700; color: var(--ink); white-space: nowrap; }
+    .price-list li .p-val.muted { font-weight: 600; color: var(--ink-soft); }
+    .price-note {
       margin-top: auto;
+      font-size: 13px; color: var(--ink-soft); line-height: 1.5;
     }
-    .car-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #f2f5fa; border: 1px solid var(--line);
-      border-radius: 10px; padding: 7px 12px;
-      font-size: 13.5px; font-weight: 600; color: var(--ink);
-    }
-    .car-chip .ico { opacity: .8; }
-    .car-class {
-      margin-top: 16px;
-      font-size: 13px; color: var(--ink-soft);
-    }
-    .car-class b { color: var(--ink); }
+    .price-note b { color: var(--ink); }
 
     /* Company / footer */
     #about { background: #fff; border-top: 1px solid var(--line); }
@@ -384,9 +385,9 @@
         <a class="btn-ghost" href="#types">Виды трансфера ↓</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><b>3</b><span>аэропорта Москвы</span></div>
-        <div class="stat"><b>5–10</b><span>рейсов ежедневно</span></div>
-        <div class="stat"><b>до 4 ч</b><span>ожидания при задержке</span></div>
+        <div class="stat"><b>3</b><span>аэропорта: Шереметьево, Домодедово, Внуково</span></div>
+        <div class="stat"><b>от 5000&nbsp;₽</b><span>групповой трансфер «от дома»</span></div>
+        <div class="stat"><b>от 9000&nbsp;₽</b><span>индивидуальный трансфер</span></div>
       </div>
     </div>
   </section>
@@ -417,54 +418,50 @@
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Виды трансфера</span>
-        <h2>Индивидуальный и групповой</h2>
-        <p>Выберите формат поездки под свою задачу — личный автомобиль для вашей компании или место в комфортном рейсовом транспорте по фиксированной цене.</p>
+        <h2>Индивидуальный и групповой «от дома»</h2>
+        <p>Выберите формат поездки: отдельный автомобиль только для вас или групповой трансфер «от дома» с фиксированным тарифом. В обоих случаях машина подаётся по указанному адресу. Цены указаны для направления Ярославль — Москва.</p>
       </div>
 
       <div class="cards">
         <!-- Individual -->
         <article class="card individual">
           <span class="badge">Индивидуальный</span>
-          <h3>Личный автомобиль</h3>
-          <p>Комфорт по доступной цене. Машина едет только для вас и вашей компании — с гибким временем выезда.</p>
+          <h3>Индивидуальный трансфер</h3>
+          <p>Отдельный автомобиль только для вас и ваших спутников. Машина подаётся по указанному адресу, доступны стандарт и бизнес-класс.</p>
           <ul class="features">
-            <li>Отдельный автомобиль только для вашей группы</li>
-            <li>Гибкое время подачи, выезд в удобный час</li>
-            <li>Водитель ждёт до 4 часов при задержке рейса</li>
-            <li>Доступен бизнес-класс для деловых поездок</li>
+            <li>Автомобиль едет только для вас — без попутчиков</li>
+            <li>Бизнес-класс: повышенный комфорт на автомобилях класса D</li>
+            <li>Аэропорты Шереметьево, Домодедово, Внуково</li>
+            <li>Детское кресло и дополнительные адреса посадки по запросу</li>
           </ul>
-          <div class="cars-label">Примеры автомобилей</div>
-          <div class="cars">
-            <span class="car-chip"><span class="ico">🚗</span>Toyota Camry</span>
-            <span class="car-chip"><span class="ico">🚗</span>Nissan Teana</span>
-            <span class="car-chip"><span class="ico">🚗</span>Kia Rio</span>
-            <span class="car-chip"><span class="ico">🚗</span>Ford Focus</span>
-            <span class="car-chip"><span class="ico">🚐</span>Hyundai H1</span>
-            <span class="car-chip"><span class="ico">🚐</span>VW Caravelle</span>
-            <span class="car-chip"><span class="ico">🚌</span>Mercedes Sprinter</span>
-          </div>
-          <div class="car-class"><b>Классы:</b> стандарт (седаны), бизнес (Camry, Teana), минивэны и микроавтобусы для больших групп.</div>
+          <div class="price-label">Стоимость из Ярославля</div>
+          <ul class="price-list">
+            <li><span class="p-name">1–3 пассажира</span><span class="p-val">9 000 ₽</span></li>
+            <li><span class="p-name">4–7 пассажиров</span><span class="p-val">14 000 ₽</span></li>
+            <li><span class="p-name">8 и более</span><span class="p-val muted">под запрос</span></li>
+            <li><span class="p-name">Бизнес-класс (класс D), 1–3 чел.</span><span class="p-val">11 000 ₽</span></li>
+          </ul>
+          <div class="price-note"><b>Доп. услуги:</b> детское кресло — 100 ₽; дополнительный адрес при сборе пассажиров — 350 ₽.</div>
         </article>
 
-        <!-- Group -->
+        <!-- Group from home -->
         <article class="card group">
-          <span class="badge">Групповой</span>
-          <h3>Место в рейсе</h3>
-          <p>Лучшие цены. Регулярные рейсы по расписанию с фиксированной стоимостью проездных документов.</p>
+          <span class="badge">Групповой «от дома»</span>
+          <h3>Групповой трансфер «от дома»</h3>
+          <p>Направление Ярославль — Москва и обратно. Мы сами подбираем приятную компанию для поездки, снижая расходы: вы оплачиваете фиксированный тариф. Машина подаётся к вашему дому.</p>
           <ul class="features">
-            <li>5–10 ежедневных отправлений во все аэропорты Москвы</li>
-            <li>Фиксированная стоимость билета</li>
-            <li>Удобные места посадки в центре города и на транспортных узлах</li>
-            <li>Комфортный туристический транспорт</li>
+            <li>Подача автомобиля по адресу, указанному при бронировании</li>
+            <li>Фиксированный тариф — попутчиков подбираем мы</li>
+            <li>Возможны остановки по нескольким адресам для подсадки пассажиров</li>
+            <li>Прибытие в аэропорт за 2–4 часа до вылета и не позднее 3 часов после прилёта</li>
           </ul>
-          <div class="cars-label">Примеры транспорта</div>
-          <div class="cars">
-            <span class="car-chip"><span class="ico">🚌</span>Автобус Higer</span>
-            <span class="car-chip"><span class="ico">🚌</span>Туристический автобус</span>
-            <span class="car-chip"><span class="ico">🚐</span>Микроавтобус</span>
-            <span class="car-chip"><span class="ico">🚗</span>Седан стандарт / бизнес</span>
-          </div>
-          <div class="car-class"><b>Классы:</b> комфортабельные автобусы туристического класса, микроавтобусы и седаны стандарт/бизнес.</div>
+          <div class="price-label">Стоимость билета (Ярославль — Москва)</div>
+          <ul class="price-list">
+            <li><span class="p-name">1 пассажир</span><span class="p-val">5 000 ₽</span></li>
+            <li><span class="p-name">2 пассажира</span><span class="p-val">8 000 ₽</span></li>
+            <li><span class="p-name">Доп. багаж (сверх нормы)</span><span class="p-val">800 ₽</span></li>
+          </ul>
+          <div class="price-note"><b>Обратите внимание:</b> точное время выезда сообщаем в день отправления.</div>
         </article>
       </div>
     </div>
