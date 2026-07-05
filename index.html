@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Трансферы в аэропорты Москвы</title>
+  <meta name="description" content="Ежедневные трансферы в аэропорты Москвы: индивидуальные и групповые поездки. Онлайн-бронирование за пару минут.">
+  <style>
+    :root {
+      --bg: #0e1a2b;
+      --bg-soft: #13233b;
+      --surface: #ffffff;
+      --ink: #1a2433;
+      --ink-soft: #5a6b81;
+      --line: #e4e9f0;
+      --brand: #1e6fe0;
+      --brand-dark: #1558b8;
+      --accent: #ffb020;
+      --radius: 16px;
+      --shadow: 0 18px 50px -18px rgba(16, 42, 78, 0.35);
+      --font: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: #f6f8fb;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(14, 26, 43, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: 0.2px;
+    }
+    .brand .mark {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      display: grid; place-items: center;
+      font-size: 18px;
+    }
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #1a2433;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .header-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px -8px rgba(255,176,32,.7); }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      color: #fff;
+      background:
+        radial-gradient(1200px 500px at 80% -10%, rgba(30,111,224,.55), transparent 60%),
+        radial-gradient(900px 500px at 0% 120%, rgba(255,176,32,.20), transparent 55%),
+        linear-gradient(160deg, var(--bg), var(--bg-soft));
+      overflow: hidden;
+    }
+    .hero .container {
+      padding-top: 84px;
+      padding-bottom: 92px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      max-width: 760px;
+      font-weight: 800;
+    }
+    .hero p.lead {
+      margin: 20px 0 34px;
+      font-size: clamp(16px, 2vw, 20px);
+      max-width: 620px;
+      color: #cdd9ea;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #1a2433;
+      font-weight: 700;
+      font-size: 17px;
+      padding: 16px 30px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 14px 34px -12px rgba(255,176,32,.75);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgba(255,176,32,.9); }
+    .btn-ghost {
+      color: #dfe8f5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 14px 6px;
+      border-bottom: 2px solid transparent;
+    }
+    .btn-ghost:hover { border-color: var(--accent); }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 54px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .hero-stats .stat b {
+      display: block;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .hero-stats .stat span { color: #9db1cc; font-size: 14px; }
+
+    /* Booking section */
+    .section { padding: 72px 0; }
+    .section-head { text-align: center; max-width: 680px; margin: 0 auto 44px; }
+    .section-head .eyebrow {
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .section-head h2 {
+      font-size: clamp(26px, 3.5vw, 38px);
+      margin: 12px 0 14px;
+      font-weight: 800;
+    }
+    .section-head p { color: var(--ink-soft); font-size: 17px; margin: 0; }
+
+    #booking { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .booking-card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, var(--bg), var(--bg-soft));
+      color: #fff;
+      border-radius: 22px;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .booking-card h3 { font-size: 26px; font-weight: 800; }
+    .booking-card p { color: #cdd9ea; margin: 14px auto 28px; max-width: 480px; }
+    .booking-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 26px;
+      margin-top: 30px;
+      color: #b9c8de;
+      font-size: 14px;
+    }
+    .booking-steps .step { display: flex; align-items: center; gap: 8px; }
+    .booking-steps .num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: rgba(255,176,32,.2); color: var(--accent);
+      display: grid; place-items: center; font-weight: 700; font-size: 13px;
+    }
+
+    /* Transfer types */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 34px 30px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 30px -22px rgba(16,42,78,.5);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card .badge {
+      align-self: flex-start;
+      font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      padding: 6px 12px; border-radius: 999px; margin-bottom: 18px;
+    }
+    .card.individual .badge { background: rgba(30,111,224,.12); color: var(--brand); }
+    .card.group .badge { background: rgba(255,176,32,.16); color: #b5790a; }
+    .card h3 { font-size: 24px; font-weight: 800; }
+    .card > p { color: var(--ink-soft); margin: 12px 0 22px; }
+    .card ul.features {
+      list-style: none; padding: 0; margin: 0 0 26px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .card ul.features li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 15px; color: var(--ink);
+    }
+    .card ul.features li::before {
+      content: "✓";
+      color: var(--brand);
+      font-weight: 800;
+      flex: none;
+    }
+    .card.group ul.features li::before { color: var(--accent); filter: brightness(.9); }
+
+    .cars-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 12px;
+    }
+    .cars {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: auto;
+    }
+    .car-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f2f5fa; border: 1px solid var(--line);
+      border-radius: 10px; padding: 7px 12px;
+      font-size: 13.5px; font-weight: 600; color: var(--ink);
+    }
+    .car-chip .ico { opacity: .8; }
+    .car-class {
+      margin-top: 16px;
+      font-size: 13px; color: var(--ink-soft);
+    }
+    .car-class b { color: var(--ink); }
+
+    /* Company / footer */
+    #about { background: #fff; border-top: 1px solid var(--line); }
+    .about-box {
+      max-width: 720px; margin: 0 auto; text-align: center;
+    }
+    .about-box h2 { font-size: 28px; font-weight: 800; margin-bottom: 14px; }
+    .about-box p { color: var(--ink-soft); font-size: 17px; margin: 0 auto 26px; }
+    .link-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--brand); font-weight: 700; text-decoration: none;
+      font-size: 16px; border: 2px solid var(--brand);
+      padding: 12px 26px; border-radius: 999px;
+      transition: background .15s ease, color .15s ease;
+    }
+    .link-btn:hover { background: var(--brand); color: #fff; }
+
+    .site-footer {
+      background: var(--bg);
+      color: #9db1cc;
+      text-align: center;
+      padding: 30px 0;
+      font-size: 14px;
+    }
+    .site-footer a { color: #cdd9ea; text-decoration: none; }
+    .site-footer a:hover { color: #fff; }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0; z-index: 100;
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 24px;
+      background: rgba(9, 18, 31, 0.72);
+      backdrop-filter: blur(4px);
+    }
+    .modal.open { display: flex; }
+    .modal-inner {
+      width: 100%; max-width: 560px;
+      height: min(88vh, 820px);
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,.6);
+      animation: pop .2s ease;
+    }
+    @keyframes pop { from { transform: translateY(14px) scale(.98); opacity: 0; } to { transform: none; opacity: 1; } }
+    .modal-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--bg);
+      color: #fff;
+      flex: none;
+    }
+    .modal-bar strong { font-size: 16px; }
+    .modal-bar .actions { display: flex; align-items: center; gap: 8px; }
+    .modal-bar a.newtab {
+      color: #cdd9ea; font-size: 13px; text-decoration: none;
+      border: 1px solid rgba(255,255,255,.25); padding: 6px 10px; border-radius: 8px;
+    }
+    .modal-bar a.newtab:hover { color: #fff; border-color: rgba(255,255,255,.5); }
+    .modal-close {
+      background: rgba(255,255,255,.14); border: none; color: #fff;
+      width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
+      font-size: 20px; line-height: 1;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.28); }
+    .modal-inner iframe { flex: 1; width: 100%; border: none; }
+
+    @media (max-width: 640px) {
+      .hero .container { padding-top: 60px; padding-bottom: 66px; }
+      .hero-stats { gap: 26px; }
+      .booking-card { padding: 36px 22px; }
+      .section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <span class="mark">✈</span>
+        <span>Пролайн&nbsp;· Трансферы</span>
+      </div>
+      <button class="header-cta" data-open-booking>Онлайн-бронирование</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Ежедневные поездки без пересадок</span>
+      <h1>Трансферы в аэропорты Москвы</h1>
+      <p class="lead">Комфортные индивидуальные и групповые трансферы в Шереметьево, Домодедово и Внуково. Забронируйте место онлайн за пару минут.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" data-open-booking>
+          <span>🎫</span> Забронировать онлайн
+        </button>
+        <a class="btn-ghost" href="#types">Виды трансфера ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>3</b><span>аэропорта Москвы</span></div>
+        <div class="stat"><b>5–10</b><span>рейсов ежедневно</span></div>
+        <div class="stat"><b>до 4 ч</b><span>ожидания при задержке</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking" class="section">
+    <div class="section-head">
+      <span class="eyebrow">Бронирование</span>
+      <h2>Оформите поездку онлайн</h2>
+      <p>Нажмите кнопку — откроется форма бронирования. Выберите дату, направление и место, а мы подтвердим вашу поездку.</p>
+    </div>
+    <div class="booking-card">
+      <h3>Онлайн-бронирование трансфера</h3>
+      <p>Быстрое оформление без звонков: выбираете рейс и оплачиваете — билет приходит на почту.</p>
+      <button class="btn-primary" data-open-booking>
+        <span>🎫</span> Открыть форму бронирования
+      </button>
+      <div class="booking-steps">
+        <div class="step"><span class="num">1</span> Выберите направление</div>
+        <div class="step"><span class="num">2</span> Укажите дату и время</div>
+        <div class="step"><span class="num">3</span> Подтвердите бронь</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSFER TYPES -->
+  <section id="types" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Виды трансфера</span>
+        <h2>Индивидуальный и групповой</h2>
+        <p>Выберите формат поездки под свою задачу — личный автомобиль для вашей компании или место в комфортном рейсовом транспорте по фиксированной цене.</p>
+      </div>
+
+      <div class="cards">
+        <!-- Individual -->
+        <article class="card individual">
+          <span class="badge">Индивидуальный</span>
+          <h3>Личный автомобиль</h3>
+          <p>Комфорт по доступной цене. Машина едет только для вас и вашей компании — с гибким временем выезда.</p>
+          <ul class="features">
+            <li>Отдельный автомобиль только для вашей группы</li>
+            <li>Гибкое время подачи, выезд в удобный час</li>
+            <li>Водитель ждёт до 4 часов при задержке рейса</li>
+            <li>Доступен бизнес-класс для деловых поездок</li>
+          </ul>
+          <div class="cars-label">Примеры автомобилей</div>
+          <div class="cars">
+            <span class="car-chip"><span class="ico">🚗</span>Toyota Camry</span>
+            <span class="car-chip"><span class="ico">🚗</span>Nissan Teana</span>
+            <span class="car-chip"><span class="ico">🚗</span>Kia Rio</span>
+            <span class="car-chip"><span class="ico">🚗</span>Ford Focus</span>
+            <span class="car-chip"><span class="ico">🚐</span>Hyundai H1</span>
+            <span class="car-chip"><span class="ico">🚐</span>VW Caravelle</span>
+            <span class="car-chip"><span class="ico">🚌</span>Mercedes Sprinter</span>
+          </div>
+          <div class="car-class"><b>Классы:</b> стандарт (седаны), бизнес (Camry, Teana), минивэны и микроавтобусы для больших групп.</div>
+        </article>
+
+        <!-- Group -->
+        <article class="card group">
+          <span class="badge">Групповой</span>
+          <h3>Место в рейсе</h3>
+          <p>Лучшие цены. Регулярные рейсы по расписанию с фиксированной стоимостью проездных документов.</p>
+          <ul class="features">
+            <li>5–10 ежедневных отправлений во все аэропорты Москвы</li>
+            <li>Фиксированная стоимость билета</li>
+            <li>Удобные места посадки в центре города и на транспортных узлах</li>
+            <li>Комфортный туристический транспорт</li>
+          </ul>
+          <div class="cars-label">Примеры транспорта</div>
+          <div class="cars">
+            <span class="car-chip"><span class="ico">🚌</span>Автобус Higer</span>
+            <span class="car-chip"><span class="ico">🚌</span>Туристический автобус</span>
+            <span class="car-chip"><span class="ico">🚐</span>Микроавтобус</span>
+            <span class="car-chip"><span class="ico">🚗</span>Седан стандарт / бизнес</span>
+          </div>
+          <div class="car-class"><b>Классы:</b> комфортабельные автобусы туристического класса, микроавтобусы и седаны стандарт/бизнес.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container about-box">
+      <h2>О компании</h2>
+      <p>«Пролайн» — транспортная компания, которая ежедневно организует трансферы в аэропорты Москвы из городов Центральной России. Подробнее об услугах, ценах и расписании — на официальном сайте.</p>
+      <a class="link-btn" href="https://proline24.ru/" target="_blank" rel="noopener">
+        Перейти на proline24.ru ↗
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Пролайн · Трансферы в аэропорты Москвы · <a href="https://proline24.ru/" target="_blank" rel="noopener">proline24.ru</a></p>
+    </div>
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-label="Онлайн-бронирование">
+    <div class="modal-inner">
+      <div class="modal-bar">
+        <strong>Онлайн-бронирование</strong>
+        <div class="actions">
+          <a class="newtab" href="https://transfer.yarobltour.ru/bron/bron_modern.php" target="_blank" rel="noopener">Открыть в новой вкладке ↗</a>
+          <button class="modal-close" id="modalClose" aria-label="Закрыть">×</button>
+        </div>
+      </div>
+      <iframe id="bookingFrame" title="Форма бронирования трансфера" loading="lazy" src="about:blank"></iframe>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var modal = document.getElementById('bookingModal');
+      var frame = document.getElementById('bookingFrame');
+      var closeBtn = document.getElementById('modalClose');
+      var widgetUrl = 'https://transfer.yarobltour.ru/bron/bron_modern.php';
+
+      function openModal() {
+        if (frame.getAttribute('src') !== widgetUrl) {
+          frame.setAttribute('src', widgetUrl);
+        }
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('[data-open-booking]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal();
+        });
+      });
+      closeBtn.addEventListener('click', closeModal);
+
+      // Close on backdrop click only when the press STARTED on the backdrop.
+      // This prevents the modal from closing itself right after opening.
+      var pressStartedOnBackdrop = false;
+      modal.addEventListener('mousedown', function (e) {
+        pressStartedOnBackdrop = (e.target === modal);
+      });
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal && pressStartedOnBackdrop) closeModal();
+        pressStartedOnBackdrop = false;
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+    })();
+  </script>
+
+</body>
+</html>
