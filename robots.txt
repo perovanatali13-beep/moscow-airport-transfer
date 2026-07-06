@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://transfer76.online/sitemap.xml
