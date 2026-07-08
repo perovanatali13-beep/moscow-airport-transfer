@@ -1,6 +1,7 @@
 .playwright-mcp/
 *.png
 !logo.png
+!img/*.png
 node_modules/
 .vercel
 .DS_Store
